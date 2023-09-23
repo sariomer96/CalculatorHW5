@@ -12,7 +12,7 @@ class ViewController: UIViewController , UICollectionViewDelegate{
  
     @IBOutlet weak var outputLabel: UILabel!
     var result:Double?
-    var sumList = [Float]()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -40,25 +40,24 @@ class ViewController: UIViewController , UICollectionViewDelegate{
     case nine = 9
         
     }
-    @IBAction func resButton(_ sender: Any) {
-        print("res")
-    }
+   
     @IBAction func resultButton(_ sender: Any) {
         
         
         if outputLabel.text?.isEmpty == false{
             var result =  AdditionExpression(outputLabel.text!)
+          
+           let floatingNum = Int((result! * 10).truncatingRemainder(dividingBy: 10))
             
-            let floatingNum = Int((result! * 10).truncatingRemainder(dividingBy: 10))
-            
+            outputLabel.text = String(result!)
             if floatingNum == 0 {
-                
-                var result = Int(result!)
-                
+
+                let result = Int(result!)
+
                 outputLabel.text = String(result)
-                
+
             }else{
-                
+
                 outputLabel.text = String(result!)
             }
      
@@ -67,8 +66,17 @@ class ViewController: UIViewController , UICollectionViewDelegate{
        
     }
     @IBAction func commaButton(_ sender: Any) {
-        if outputLabel.text!.last != "." {
-            outputLabel.text! += "."
+        
+        
+        if outputLabel.text!.last != "."  {
+            
+           var sayi = outputLabel.text?.last
+            
+            
+            if let sayi = sayi {
+                outputLabel.text! += "."
+            }
+           
         }
      
     }
@@ -123,7 +131,13 @@ class ViewController: UIViewController , UICollectionViewDelegate{
     }
     
     
-     
+    @IBAction func acButton(_ sender: Any) {
+        if outputLabel.text?.isEmpty == false{
+            outputLabel.text?.removeLast()
+        }
+        
+    }
+    
     func AdditionExpression(_ expression: String) -> Double? {
        
         let components = expression.components(separatedBy: "+")
@@ -131,14 +145,18 @@ class ViewController: UIViewController , UICollectionViewDelegate{
         var result = 0.0
         
         for component in components {
-            print(component)
-            if let number = Double(component) {
-                result += number
-            } else {
-        
-               
-                return nil
+            
+            if component.isEmpty == false && component != "."{
+                print(component)
+                if let number = Double(component) {
+                    result += number
+                } else {
+            
+                   
+                    return nil
+                }
             }
+         
         }
         
         return result

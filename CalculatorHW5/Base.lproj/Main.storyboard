@@ -89,12 +89,15 @@
                                             <action selector="clearButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nYh-aP-DEb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQT-MP-yyq">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQT-MP-yyq">
                                         <rect key="frame" x="91" y="0.0" width="91" height="74"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="+/-">
+                                        <buttonConfiguration key="configuration" style="filled" title="AC">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="50"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="acButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0YY-TN-Ic7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc5-dV-4eg">
                                         <rect key="frame" x="182" y="0.0" width="91" height="74"/>
@@ -238,7 +241,6 @@
                                             <fontDescription key="titleFontDescription" type="system" pointSize="50"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="resButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jl0-wD-bod"/>
                                             <action selector="resultButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="am0-ql-AU9"/>
                                         </connections>
                                     </button>
