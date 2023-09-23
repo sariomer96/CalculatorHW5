@@ -11,8 +11,8 @@ class ViewController: UIViewController , UICollectionViewDelegate{
  
  
     @IBOutlet weak var outputLabel: UILabel!
-    let result = 0
-    
+    var result:Double?
+    var sumList = [Float]()
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -20,6 +20,13 @@ class ViewController: UIViewController , UICollectionViewDelegate{
         // Do any additional setup after loading the view.
     }
 
+    enum Operations: String{
+        case sum = "+"
+        case minus = "-"
+        case multiply = "*"
+
+
+    }
     enum Numbers:Int {
     case zero = 0
     case one = 1
@@ -33,11 +40,40 @@ class ViewController: UIViewController , UICollectionViewDelegate{
     case nine = 9
         
     }
+    @IBAction func resButton(_ sender: Any) {
+        print("res")
+    }
     @IBAction func resultButton(_ sender: Any) {
+        
+        
+        if outputLabel.text?.isEmpty == false{
+            var result =  AdditionExpression(outputLabel.text!)
+            
+            let floatingNum = Int((result! * 10).truncatingRemainder(dividingBy: 10))
+            
+            if floatingNum == 0 {
+                
+                var result = Int(result!)
+                
+                outputLabel.text = String(result)
+                
+            }else{
+                
+                outputLabel.text = String(result!)
+            }
+     
+            result = 0
+        }
+       
     }
     @IBAction func commaButton(_ sender: Any) {
+        if outputLabel.text!.last != "." {
+            outputLabel.text! += "."
+        }
+     
     }
     @IBAction func clearButton(_ sender: Any) {
+       
         outputLabel.text = ""
     }
     @IBAction func threeButton(_ sender: Any) {
@@ -68,8 +104,49 @@ class ViewController: UIViewController , UICollectionViewDelegate{
     @IBAction func fourButton(_ sender: Any) {
         outputLabel.text! +=  String( Numbers.four.rawValue)
     }
+    func getNumbers(numbers:String){
+        
+        let nums = numbers.split(separator: "+")
+        
+        print(nums)
+    }
+    @IBAction func sumButton(_ sender: Any) {
+        
+        if(outputLabel.text?.last != "+" && outputLabel.text?.first != nil){
+            outputLabel.text! += Operations.sum.rawValue
+        }
+     
+        
+    }
     @IBAction func sevenButton(_ sender: Any) {
         outputLabel.text! +=   String(Numbers.seven.rawValue)
     }
+    
+    
+     
+    func AdditionExpression(_ expression: String) -> Double? {
+       
+        let components = expression.components(separatedBy: "+")
+        
+        var result = 0.0
+        
+        for component in components {
+            print(component)
+            if let number = Double(component) {
+                result += number
+            } else {
+        
+               
+                return nil
+            }
+        }
+        
+        return result
+    }
+
+
+
+
+
 }
 
